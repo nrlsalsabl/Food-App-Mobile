@@ -11,6 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: deprecated_member_use
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
