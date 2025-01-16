@@ -7,6 +7,7 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return Drawer(backgroundColor: Theme.of(context).colorScheme.background,
     child: Column(
       children: [

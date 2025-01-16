@@ -11,8 +11,10 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Settings"),
+          // ignore: deprecated_member_use
           backgroundColor: Theme.of(context).colorScheme.background,
         ),
+        // ignore: deprecated_member_use
         backgroundColor: Theme.of(context).colorScheme.background,
         body: Column(
           children: [

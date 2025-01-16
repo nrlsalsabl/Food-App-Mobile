@@ -31,6 +31,7 @@ class MySliverAppBar extends StatelessWidget {
           //   },
           // ),
         ],
+        // ignore: deprecated_member_use
         backgroundColor: Theme.of(context).colorScheme.background,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Sunset Dinner"),
