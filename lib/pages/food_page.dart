@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/my_button.dart';
 import 'package:flutter_application_1/models/food.dart';
+import 'package:flutter_application_1/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
@@ -21,6 +23,23 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  // method untuk menambah cart
+  void addToCart(Food food, Map<Addon, bool> selectedAddons) {
+    // tutup halaman food untuk kembali ke menu
+    Navigator.pop(context);
+
+    // format selected addons
+    List<Addon> currentlySelectedAddons = [];
+    for (Addon addon in widget.food.availableAddons) {
+      if (widget.selectedAddons[addon] == true) {
+        currentlySelectedAddons.add(addon);
+      }
+    }
+
+    // masukkan ke cart
+    context.read<Restaurant>().addCart(food, currentlySelectedAddons);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -112,7 +131,9 @@ class _FoodPageState extends State<FoodPage> {
                     ],
                   ),
                 ),
-                MyButton(text: "Add to cart", onTap: () {}),
+                MyButton(
+                    text: "Add to cart",
+                    onTap: () => addToCart(widget.food, widget.selectedAddons)),
                 SizedBox(
                   height: 25,
                 )
@@ -127,8 +148,9 @@ class _FoodPageState extends State<FoodPage> {
             opacity: 0.6,
             child: Container(
               margin: EdgeInsets.only(left: 25),
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary,
-              shape: BoxShape.circle,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                shape: BoxShape.circle,
               ),
               child: IconButton(
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
