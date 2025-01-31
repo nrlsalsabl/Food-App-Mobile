@@ -12,10 +12,15 @@ class DeliveryProgressPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       bottomNavigationBar: _buildBottomNavbar(context),
-      body: Column(
-        children: [
-          MyReceipt(),
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              MyReceipt(),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -18,6 +18,9 @@ class _PaymentState extends State<PaymentPage> {
   String cvvCode = '';
   bool showBackView = false;
 
+  // Menambahkan TextEditingController untuk mengontrol expiryDate
+  TextEditingController expiryDateController = TextEditingController();
+
   // user payment
   void userPayment() {
     if (formKey.currentState!.validate()) {
@@ -65,49 +68,57 @@ class _PaymentState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // ignore: deprecated_member_use
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          title: const Text("Checkout"),
-        ),
-        body: Column(
-          children: [
-            // kartu kredit
-            CreditCardWidget(
-              cardNumber: cardNumber,
-              expiryDate: expiryDate,
-              cardHolderName: cardHolderName,
-              cvvCode: cvvCode,
-              showBackView: showBackView,
-              onCreditCardWidgetChange: (p0) {},
-            ),
-
-            // FORM KARTU KREDIT
-            CreditCardForm(
+      // ignore: deprecated_member_use
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: AppBar(
+        title: const Text("Checkout"),
+      ),
+      body: SingleChildScrollView(  // Memastikan scrollable
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),  // Menambah padding untuk menghindari overlap
+          child: Column(
+            children: [
+              // kartu kredit
+              CreditCardWidget(
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
                 cvvCode: cvvCode,
+                showBackView: showBackView,
+                onCreditCardWidgetChange: (p0) {},
+              ),
+              
+              // FORM KARTU KREDIT
+              CreditCardForm(
+                cardNumber: cardNumber,
+                expiryDate: expiryDate,
+                cardHolderName: cardHolderName,
+                cvvCode: cvvCode,
+                formKey: formKey,
                 onCreditCardModelChange: (data) {
                   setState(() {
                     cardNumber = data.cardNumber;
-                    expiryDate = data.expiryDate;
+                    expiryDate = data.expiryDate;  // Pastikan expiryDate diperbarui dengan benar
                     cardHolderName = data.cardHolderName;
                     cvvCode = data.cvvCode;
+                    // Perbarui controller expiryDate jika diperlukan
+                    expiryDateController.text = data.expiryDate;
                   });
                 },
-                formKey: formKey),
+              ),
 
-            Spacer(),
+              SizedBox(height: 10),
 
-            MyButton(
-              text: "Pay Now", 
-              onTap: () => userPayment()),
+              MyButton(
+                text: "Pay Now", 
+                onTap: userPayment
+              ),
 
-            SizedBox(
-              height: 25,
-            )
-          ],
-        ));
+              SizedBox(height: 25),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
