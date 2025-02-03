@@ -32,25 +32,27 @@ class MyCartTile extends StatelessWidget {
                       child: Image.asset(
                         cartItem.food.imagePath,
                         height: 100,
-                        width: 100,
+                        width: 80,
                       )),
 
                   SizedBox(width: 10),
 
                   // nama dan harga
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(cartItem.food.name),
-
-                      Text(
-                        // ignore: prefer_interpolation_to_compose_strings
-                        'Rp' + cartItem.food.price.toString(),
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(cartItem.food.name),
+                    
+                        Text(
+                          // ignore: prefer_interpolation_to_compose_strings
+                          'Rp' + cartItem.food.price.toString(),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 
                   const Spacer(),

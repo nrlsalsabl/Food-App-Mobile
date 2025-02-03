@@ -28,7 +28,7 @@ class DeliveryProgressPage extends StatelessWidget {
   // Custom Bottom nav Bar - Message / Call delivery driver
   Widget _buildBottomNavbar(BuildContext context) {
     return Container(
-      height: 100,
+      height: 105,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.only(
@@ -36,7 +36,7 @@ class DeliveryProgressPage extends StatelessWidget {
           topRight: Radius.circular(40),
         ),
       ),
-      padding: EdgeInsets.all(25),
+      padding: EdgeInsets.all(10),
       child: Row(
         children: [
           // profile pic of driver
@@ -57,24 +57,26 @@ class DeliveryProgressPage extends StatelessWidget {
           ),
 
           // detail pengendara
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Muhammad Adi Saputra",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Theme.of(context).colorScheme.inversePrimary,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Muhammad Adi Saputra",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
                 ),
-              ),
-              Text(
-                "Driver",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                Text(
+                  "Driver",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
           Spacer(),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/my_button.dart';
 import 'package:flutter_application_1/components/my_cart_tile.dart';
+// ignore: unused_import
+import 'package:flutter_application_1/models/cart_item.dart';
 import 'package:flutter_application_1/models/restaurant.dart';
 import 'package:flutter_application_1/pages/payment_page.dart';
 import 'package:provider/provider.dart';
@@ -56,23 +58,14 @@ class CartPage extends StatelessWidget {
             children: [
               // list of cart
               Expanded(
-                child: Column(
-                  children: [
-                    userCart.isEmpty
-                        ? Expanded(
-                            child: Center(child: Text("Cart is Empty ...")))
-                        : Expanded(
-                            child: ListView.builder(
-                                itemCount: userCart.length,
-                                itemBuilder: (context, index) {
-                                  // get individual cart items
-                                  final cartItem = userCart[index];
-
-                                  // return cart tile UI
-                                  return MyCartTile(cartItem: cartItem);
-                                }))
-                  ],
-                ),
+                child: userCart.isEmpty
+                    ? Center(child: Text("Cart is Empty..."))
+                    : ListView.builder(
+                        itemCount: userCart.length,
+                        itemBuilder: (context, index) {
+                          final cartItem = userCart[index];
+                          return MyCartTile(cartItem: cartItem);
+                        }),
               ),
 
               // button to pay
